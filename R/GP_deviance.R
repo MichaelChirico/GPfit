@@ -43,7 +43,7 @@ GP_deviance <-
   Sig = R + diag(rep(delta, n))
   Sig_inv  = solve(Sig)
   #difference between observed Y and mu_hat
-  mu_hat_diff = Y - rep(sum(Sig_inv) / sum(Sig_inv %*% Y), n)
+  mu_hat_diff = Y - sum(Sig_inv) / sum(Sig_inv %*% Y)
 
   part1 = 2*sum(log(abs(eigen(chol(Sig), only.values = TRUE)$values)))
   part2 = n * log(drop(t(mu_hat_diff) %*% Sig_inv %*% mu_hat_diff))
